@@ -11,8 +11,8 @@
 </template>
 
 // index.vue
-<script setup>
-import { ref } from 'vue'
+<script setup> 
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { key, store } from '../store/index.ts'
@@ -20,15 +20,50 @@ import { key, store } from '../store/index.ts'
 const actorName = ref('')
 const router = useRouter()
 //const store = useStore(key)
+var storage;
+onMounted(() => {
+      storage = localStorage;
+    });
 
 function confirmName() {
   console.log('actoerName is : ' + actorName.value) 
   if (actorName.value) {
     store.commit('setActorName', actorName.value)
+    if (storage) {
+      storage.setItem('actorName', actorName.value);
+    }
     router.push({ name: 'loading' })
   }
 }
+
 </script>
+
+<!-- <script lang="ts">
+import { defineComponent, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { store } from '../store/index.ts'
+
+export default defineComponent({
+  name: 'index',
+
+  setup() {
+    const actorName = ref('')
+    const router = useRouter()
+    //const store = useStore(key)
+
+    function confirmName() {
+      console.log('actoerName is : ' + actorName.value) 
+      if (actorName.value) {
+        store.commit('setActorName', actorName.value)
+        onMounted(() => {
+          localStorage.setItem('actorName', actorName.value)
+      })
+        router.push({ name: 'loading' })
+      }
+    }
+  }
+});
+</script> -->
 
 <style scoped>
 .container {

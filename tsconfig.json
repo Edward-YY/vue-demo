@@ -3,11 +3,12 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
     // 其他配置项...
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/vuex/types"
     ]
-  }
-
+  },
+  "allowImportingTsExtensions": true,
 }

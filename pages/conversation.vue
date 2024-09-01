@@ -17,7 +17,6 @@
       <div>
         <audio src="gowest.mp3" preload="auto"></audio>
       </div>
-     
     </div>
   </div>
   
@@ -27,14 +26,27 @@
 // conversation.vue
 <script setup>
 import { computed } from 'vue'
-// import { useStore } from 'vuex'
 import { store } from '../store/index'
 import { useRouter } from 'vue-router';
-import { defineComponent, onMounted } from 'vue';
+import {  onMounted } from 'vue';
 
-//const store = useStore()
-//const actorName = computed(() => store.state.actorName)
-const actorName = store.getters.getActorName
+var storage;
+onMounted(() => {
+      storage = localStorage;
+      console.log("localStorage is getted.")
+});
+
+const actorName = computed(() => getStoredActor())
+function getStoredActor() {
+  var result = store.getters.getActorName
+  if (!result && storage) {
+    result = storage.getItem('actorName');
+    console.log("actorName is getted from local storage" )
+  }
+  console.log("result value is : " + result)
+  return result
+}
+
 
 const actorImage = computed(() => {
   // return actorName.value ? `/static/上野.jpg` : ''
@@ -67,7 +79,8 @@ function goHome(){
 
 #h_1 {
   margin-top:0px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
+  padding-left: 40px;
 }
 
 button {
@@ -87,12 +100,12 @@ button {
 }
 
 .controls {
-  margin-left: 20px;
+  margin-left: 90px;
 }
 
 .actorImage {
   width: 100%;
-  height: 30%;
+  height: 60%;
   margin-left: -20px;
   padding-left : 0px;
   border: 3px solid #0ce2e9;
