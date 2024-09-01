@@ -1,18 +1,38 @@
 // index.vue
-<script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
+import InjectionKey  from 'vue'
+import { createStore, Store, useStore as baseUseStore } from 'vuex'
 
-const actorName = ref('')
-const router = useRouter()
-const store = useStore()
-
-function confirmName() {
-  if (actorName.value) {
-    store.commit('setActorName', actorName.value)
-    router.push({ name: 'loading' })
-  }
+// 定义你的状态类型
+interface State {
+  actorName: string
 }
-</script>
 
+// インジェクションキーを定義します
+export const key: InjectionKey<Store<State>> = Symbol()
+
+
+// 创建 store
+export const store = createStore<State>({
+  state: {
+    actorName: ''
+  },
+  mutations: {
+    setActorName(state, name: string) {
+      state.actorName = name
+    }
+  },
+  actions: {
+    updateActorName({ commit }, name: string) {
+      commit('setActorName', name)
+    }
+  },
+  getters: {
+    getActorName(state): string {
+      return state.actorName
+    }
+  }
+})
+
+export const useStore = () => {
+  return baseUseStore(key);
+}

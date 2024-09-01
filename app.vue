@@ -1,16 +1,16 @@
+import {createApp} from 'vue'
+import { store, key } from './store'
+
+const app = createApp({...})
+app.use(store, key)
+app.mount('#app')
+
 <template>
   <div>
-    <!-- 头部、导航栏等公共部分 -->
-    <header>
-    </header>
-
-    <!-- 渲染页面内容 -->
+  <!-- 渲染页面内容 -->
+  <NuxtLayout>
     <NuxtPage />
-
-    <!-- 底部等其他公共部分 -->
-    <footer>
-      <p>@Softbank Corp.</p>
-    </footer>
+  </NuxtLayout>
   </div>
 </template>
 
