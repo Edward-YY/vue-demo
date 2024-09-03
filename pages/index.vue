@@ -38,33 +38,6 @@ function confirmName() {
 
 </script>
 
-<!-- <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { store } from '../store/index.ts'
-
-export default defineComponent({
-  name: 'index',
-
-  setup() {
-    const actorName = ref('')
-    const router = useRouter()
-    //const store = useStore(key)
-
-    function confirmName() {
-      console.log('actoerName is : ' + actorName.value) 
-      if (actorName.value) {
-        store.commit('setActorName', actorName.value)
-        onMounted(() => {
-          localStorage.setItem('actorName', actorName.value)
-      })
-        router.push({ name: 'loading' })
-      }
-    }
-  }
-});
-</script> -->
-
 <style scoped>
 .container {
   display: flex;
