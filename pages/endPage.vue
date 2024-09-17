@@ -1,9 +1,11 @@
 <template>
     <div class="container">
         <div class="home">
-            <h1 id="text_1">ようこそ！今日の学習を始めましょう！</h1>
+            <h1 id="text_1">もう少し学習しましょうか。</h1>
             <div class="confirm-area">
-                <button id="start_button" @click="startConfirm">自分のコーチを生成</button>
+                <button id="start_button" @click="goVideo">学習を続ける</button>
+                <button id="start_button" @click="goBasicMenu">他のコーチを選ぶ</button>
+                <button id="start_button" @click="goIndex">終了</button>
             </div>
         </div>
     </div>
@@ -17,10 +19,32 @@ import { key, store } from '../store/index.ts'
 
 const router = useRouter()
 //const store = useStore(key)
+const selectedGender = ref('')
 
-function startConfirm() {
+onMounted(() => {
+    selectedGender.value = sessionStorage.getItem('avatarGender')
+    console.log('【endPage】avatarGender getted : ' + selectedGender.value )
+}) 
+
+function goVideo() {
+    if (selectedGender.value == '男性') {
+        router.push({name : 'videoG'})
+    } else if (selectedGender.value == '女性') {
+        router.push({name : 'videoL'})
+    } else {
+        router.push({name : 'video'})
+    }
+    
+}
+
+function goBasicMenu() {
   router.push({name : 'basicMenu'})
 }
+
+function goIndex() {
+    router.push({name : 'index'})
+}
+
 </script>
 
 <style scoped>
@@ -46,13 +70,14 @@ function startConfirm() {
 
 .confirm-area {
     display : flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 50px;
 }
 
 #start_button{
-    margin-top: 100px;
+    margin-top: 10px;
     background-color: #2c3e50;
     color: white;
     border: none;

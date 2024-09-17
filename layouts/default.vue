@@ -17,6 +17,7 @@
                 </slot>
             </nav>
             <div class="right-content">
+                <i class="fas fa-home icon" @click="goIndex"></i>
                 <i class="fas fa-search icon"></i>
                 <i class="fas fa-envelope icon"></i>
                 <i class="fas fa-user icon"></i>
@@ -35,21 +36,39 @@
         </footer>
     </div>
 </template>
-  
-<script lang="ts">
+
+<!-- <script lang="ts">
 import { defineComponent } from 'vue';
 import ToggleMenu from '~/components/ToggleMenu.vue';
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
 name: 'DefaultLayout',
 components: {
     ToggleMenu,
+},
+setup() {
+    const router = useRouter();
+    const goIndex = () => {
+        router.push({name : 'index'});
+    }
+    return {
+        goIndex
+    }
 }
 });
 
+</script> -->
+
+<script lang="ts" setup>
+import { defineComponent } from 'vue';
+import ToggleMenu from '~/components/ToggleMenu.vue';
+import { useRouter } from 'vue-router'
+const router = useRouter();
+function goIndex() {
+    router.push({name : 'index'});
+};
 </script>
-
-
 
 <style scoped>
 /* 整个布局使用Flexbox */
@@ -57,6 +76,13 @@ components: {
 display: flex;
 flex-direction: column;
 min-height: 100vh;/* 高度至少为浏览器视口高度 */
+/* 渐变色 */
+/*
+background: linear-gradient(to right, #e0f7fa, #e8f5e9);
+*/
+/* 浅暖灰 */
+background:#f0f0f0;
+
 }
 
 /* 样式定义 */
@@ -66,7 +92,13 @@ min-height: 100vh;/* 高度至少为浏览器视口高度 */
     top: 0;
     left: 0;
     width: 100%;
+    /*
     background-color: #0ce2e9;
+    */
+    /* 黑蓝 */
+    background-color: #2c3e50;
+    /* 空军蓝*/
+    /* background-color: #003366; */
     color: rgb(250, 241, 241);
     padding: 10px;
     text-align: center;
@@ -112,7 +144,10 @@ min-height: 100vh;/* 高度至少为浏览器视口高度 */
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #0ce2e9;
+    /* 黑蓝*/
+    background-color: #2c3e50;
+    /* 空军蓝 */
+    /* background-color: #003366; */
     color: rgb(250, 241, 241);
     padding: 10px;
     text-align: center;
