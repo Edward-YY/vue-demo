@@ -1,0 +1,6 @@
+version: '2'
+services:
+  app:
+    image: "alamusi-vue-demo"
+    ports:
+      - "3000:3000"

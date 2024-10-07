@@ -26,14 +26,14 @@
   import { useRouter } from 'vue-router'
   
   const avatars = [
-    'woman1.jpg',
-    'woman2.jpg',
-    'woman3.jpg',
-    'woman4.jpg',
-    'woman5.jpg',
-    'woman6.jpg',
-    'woman7.jpg',
-    'woman8.jpg'
+    'woman1.png',
+    'woman2.png',
+    'woman3.png',
+    'woman4.png',
+    'woman5.png',
+    'woman6.png',
+    'woman7.png',
+    'woman8.png'
   ];
 
   const hoveredAvatar = ref<number | null>(null);
